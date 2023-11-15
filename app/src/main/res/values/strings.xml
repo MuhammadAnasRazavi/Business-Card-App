@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Business Card App</string>
+    <string name="name_text">Muhammad Anas Razavi</string>
+    <string name="designation_text">Learning Android Development</string>
 </resources>
