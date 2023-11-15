@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,6 +44,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    DisplayBusinessCard()
                 }
             }
         }
@@ -57,7 +59,6 @@ fun IntroductionCard(
     modifier: Modifier = Modifier
 ) {
     Column(
-        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
     ) {
@@ -67,7 +68,7 @@ fun IntroductionCard(
             modifier = modifier
                 .height(100.dp)
                 .width(100.dp)
-                .background(Color(7, 48, 66))
+                .background(Color(14, 26, 17))
         )
         Text(
             text = name,
@@ -110,7 +111,10 @@ fun ContactInformationCard(
                 color = Color(41,54,44)
             )
         }
-        Row(modifier = modifier.padding(bottom = 10.dp)) {
+        Row(
+            modifier = modifier
+                .padding(bottom = 10.dp)
+        ) {
             Icon(
                 imageVector = Icons.Rounded.Share,
                 contentDescription = "Social_Media",
@@ -137,14 +141,34 @@ fun ContactInformationCard(
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun GreetingPreview() {
-    BusinessCardAppTheme {
+fun DisplayBusinessCard(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(Color(210, 232, 212)),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Spacer(modifier = Modifier.height(150.dp))
+        IntroductionCard(
+            image = painterResource(id = R.drawable.android_logo),
+            name = stringResource(id = R.string.name_text),
+            designation = stringResource(id = R.string.designation_text),
+        )
+        Spacer(modifier = Modifier.height(200.dp))
         ContactInformationCard(
             mobileNumber = stringResource(R.string.mobile_number_text),
             socialMedia = stringResource(R.string.social_media_text),
             email = stringResource(R.string.email_text)
         )
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun GreetingPreview() {
+    BusinessCardAppTheme {
+        DisplayBusinessCard()
     }
 }
